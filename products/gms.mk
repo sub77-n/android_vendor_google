@@ -1,6 +1,6 @@
 # version
 ROM_BUILDTYPE := HOMEMADE
-ROM_VERSION := $(TARGET_DEVICE)-$(shell date -u +%Y%m%d)-$(PLATFORM_VERSION)-$(BUILD_ID)-$(ROM_BUILDTYPE)
+ROM_VERSION := $(TARGET_PRODUCT)-$(shell date -u +%Y%m%d)-$(PLATFORM_VERSION)-$(BUILD_ID)-$(ROM_BUILDTYPE)
 
 # bootanimation (480 DPI)
 ifneq ($(filter honami leo sirius sumire, $(TARGET_DEVICE)),)
