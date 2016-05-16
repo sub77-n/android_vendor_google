@@ -16,6 +16,10 @@
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/google/overlay/common
 
+# AOSP Packages
+PRODUCT_PACKAGES += \
+    ExactCalculator
+
 # version
 ROM_BUILDTYPE := HOMEMADE
 ROM_VERSION := $(TARGET_PRODUCT)-$(shell date -u +%Y%m%d)-$(PLATFORM_VERSION)-$(BUILD_ID)-$(ROM_BUILDTYPE)
