@@ -16,14 +16,6 @@
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/google/overlay/common
 
-# AOSP Packages
-PRODUCT_PACKAGES += \
-    ExactCalculator
-
-# version
-ROM_BUILDTYPE := HOMEMADE
-ROM_VERSION := $(TARGET_PRODUCT)-$(shell date -u +%Y%m%d)-$(PLATFORM_VERSION)-$(BUILD_ID)-$(ROM_BUILDTYPE)
-
 # Audio (Notifications/Alarms)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.notification_sound=Argon.ogg \
@@ -46,3 +38,37 @@ ifneq ($(filter aosp_c6903 aosp_d6503 aosp_d6603 aosp_e6653 aosp_e6853, $(TARGET
 PRODUCT_COPY_FILES +=  \
     vendor/google/prebuilt/common/bootanimation/480/bootanimation.zip:system/media/bootanimation.zip
 endif
+
+# OpenGapps
+GAPPS_VARIANT := micro
+GAPPS_FORCE_PACKAGE_OVERRIDES := true
+GAPPS_FORCE_WEBVIEW_OVERRIDES := true
+GAPPS_FORCE_BROWSER_OVERRIDES := true
+
+# Telephony Packages (Not windy devices allowed)
+ifneq ($(filter-out aosp_sgp511 aosp_sgp611 aosp_sgp712, $(TARGET_PRODUCT)),)
+GAPPS_FORCE_DIALER_OVERRIDES := true
+GAPPS_FORCE_MMS_OVERRIDES := true
+
+# Audio (Ringtones)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.ringtone=Orion.ogg
+endif
+
+# Add some extras not in micro
+# To override stock AOSP apps
+PRODUCT_PACKAGES += \
+    CalculatorGoogle \
+    GoogleCamera \
+    GoogleContacts \
+    LatinImeGoogle \
+    Music2 \
+    Photos \
+    PrebuiltDeskClockGoogle
+
+ifneq ($(filter-out aosp_c6903 aosp_c6833 aosp_d5503, $(TARGET_PRODUCT)),)
+PRODUCT_PACKAGES += \
+    TagGoogle
+endif
+
+$(call inherit-product, vendor/google/build/opengapps-packages.mk)
