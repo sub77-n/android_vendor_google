@@ -4,6 +4,8 @@
 export USE_CCACHE=1
 export KBUILD_BUILD_USER=$USER
 
+export device=falcon
+
 # erikcas: lower cchace
 prebuilts/misc/linux-x86/ccache/ccache -M 32G
 
@@ -16,6 +18,8 @@ repo sync
 rm -rf out
 . build/envsetup.sh
 lunch aosp_$device-userdebug
+
+mkdir -p /and/sonyaosp/out/target/product/falcon/obj/KERNEL_OBJ/usr
 
 # ENABLED by default
 make -j$(grep -c ^processor /proc/cpuinfo) dist
