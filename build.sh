@@ -19,7 +19,6 @@ rm -rf out
 . build/envsetup.sh
 lunch aosp_$device-userdebug
 
-mkdir -p /and/sonyaosp/out/target/product/falcon/kernel
 mkdir -p /and/sonyaosp/out/target/product/falcon/obj/KERNEL_OBJ/usr
 
 # ENABLED by default
