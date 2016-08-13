@@ -6,7 +6,7 @@ export KBUILD_BUILD_USER=$USER
 
 export CONFIG_NO_ERROR_ON_MISMATCH=y
 
-export device=falcon
+#export device=falcon
 
 # erikcas: lower cchace
 prebuilts/misc/linux-x86/ccache/ccache -M 32G
