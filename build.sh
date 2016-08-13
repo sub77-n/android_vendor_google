@@ -21,7 +21,7 @@ rm -rf out
 . build/envsetup.sh
 lunch aosp_$device-userdebug
 
-mkdir -p /and/sonyaosp/out/target/product/falcon/obj/KERNEL_OBJ/usr
+mkdir -p /and/sonyaosp/out/target/product/$device/obj/KERNEL_OBJ/usr
 
 # ENABLED by default
 make -j$(grep -c ^processor /proc/cpuinfo) dist
